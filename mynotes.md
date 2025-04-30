@@ -16,3 +16,49 @@ n your get_book_text() function, the return f.read() is indented one level becau
 In your count_words() function, the return word_count is at the same indentation level as the rest of the function body. This is also correct since it's not inside any nested block.
 
 Both functions have proper indentation for their context. The indentation in Python indicates code blocks, and the with statement in the first function creates a block that needs to be indented.
+
+#####
+
+The with statement in Python creates what's called a "context manager." It's primarily used for resource management - automatically handling setup and cleanup tasks.
+```
+with open(filepath) as f:
+    return f.read()
+```
+The with block does several important things:
+
+It opens the file at the specified filepath
+It assigns the file object to the variable f
+When the code inside the block finishes executing, it automatically closes the file
+This is particularly useful for file operations because:
+
+You don't have to remember to close the file manually
+The file gets closed properly even if an error occurs
+It makes your code cleaner and more readable
+
+Without using with, you'd need to handle opening and closing explicitly:
+
+```
+f = open(filepath)
+try:
+    return f.read()
+finally:
+    f.close()
+```
+So the with block is a more elegant way to ensure files get properly opened and closed. Any code indented under the with statement is executed while the file is open, and then the file is automatically closed when that block ends.
+
+The with statement in Python is quite versatile and not limited to just file operations.
+
+While files are perhaps the most common use case, with can be used with any object that follows the "context manager" protocol (implements __enter__ and __exit__ methods). Here are some other common uses:
+
+Network connections:
+
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    # Connection operations
+
+Database transactions:
+
+with connection:
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM table")
+
+The with statement is a powerful tool for any situation where you need setup and cleanup actions around a block of code. It ensures resources are properly managed even if exceptions occur.
