@@ -11,4 +11,8 @@ This pattern also has another benefit: if someone imports your file as a module 
 It's a bit like writing a recipe (the function definitions) and then actually cooking the meal (calling main()).
 
 #####
+n your get_book_text() function, the return f.read() is indented one level because it's inside the with block. This is correct because the file needs to be open when you read from it.
 
+In your count_words() function, the return word_count is at the same indentation level as the rest of the function body. This is also correct since it's not inside any nested block.
+
+Both functions have proper indentation for their context. The indentation in Python indicates code blocks, and the with statement in the first function creates a block that needs to be indented.
